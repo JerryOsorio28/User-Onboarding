@@ -1,15 +1,17 @@
-html {
-    background-image: linear-gradient(black, white);
-    
-    body {
-    display: flex;
-    justify-content: center;
-    }
+html{
+    height: 200%;
+}
+
+body {
+background-image: linear-gradient(black, white);
+display: flex;
+justify-content: center;
 }
 
 #root{
+    padding: 20px;
     background-color: gainsboro;
-    box-shadow: 5px 5px 10px;
+    box-shadow: 10px 10px 30px;
     width: 62.5%;
 }
 
@@ -38,5 +40,38 @@ html {
             display: flex;
             align-items: center;
         }
+
+        button{
+            padding: 10px 15px;
+            margin: 10px 40px;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .error{
+            color: red;
+        }
+
     }
+
+    .userCards{
+        display: flex;
+        flex-wrap: wrap;
+
+        h3{
+            text-shadow: 1px 1px 5px black;
+        }
+        
+        p{
+            font-size: 10px;
+        }
+    }
+            .userCard{
+                border-radius: 10px;
+                width: 45%;
+                margin: .2rem;
+                background-color: darkgreen;
+                color: white;
+            }
+
 }

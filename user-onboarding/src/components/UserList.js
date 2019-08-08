@@ -4,7 +4,7 @@ import User from './User';
 const UserList = (users) =>{
     // console.log(users.users)
     return(
-        <div>
+        <div className='userCards'>
             {users.users.map(user => <User key={user.id} user={user}/>)}
         </div>
     )   
