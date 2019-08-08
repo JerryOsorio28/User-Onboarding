@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, resetForm } from 'formik';
 import UserList from './UserList';
+import { reset } from 'ansi-colors';
+
     
-const UserForm = ( { errors, touched, values, handleSubmit, status } ) => {
+const UserForm = ( { errors, touched, values, status } ) => {
     const [users, setUsers] = useState([]);
+
     // console.log(users)
 
     useEffect(() => {
         if (status) {
-            setUsers(...users, status)
+            setUsers([...users, status])
         }
     }, [status]);
 
@@ -18,18 +21,21 @@ const UserForm = ( { errors, touched, values, handleSubmit, status } ) => {
         <div className='userForm'>
             <h1>User Form</h1>
             <Form>
+                <h3>Name</h3>
                 <Field 
                     type='text' 
                     name='name' 
                     placeholder='Name'
                 />
                 {touched.name && errors.name && <p className="error">{errors.name}</p>}
+                <h3>E-mail</h3>
                 <Field 
                     type='text' 
                     name='email' 
                     placeholder='E-mail'
                 />
                 {touched.email && errors.email && <p className="error">{errors.email}</p>}
+                <h3>Password</h3>
                 <Field 
                     type='password' 
                     name='password' 
@@ -72,12 +78,14 @@ const FormikUserForm = withFormik({
         termsOfService: Yup.bool().oneOf([true], 'Accept the Terms of Service')
     }),
 
-    handleSubmit(values, { setStatus }) {
+    handleSubmit(values, { setStatus,  resetForm } ) {
         axios
             .post(' https://reqres.in/api/users', values)
             .then(res => {
                 // console.log(res.data)
                 setStatus(res.data);
+                resetForm();
+                
             })
             .catch(err => console.log(err.response))
     }

@@ -1,10 +1,11 @@
 import React from 'react';
+import User from './User';
 
 const UserList = (users) =>{
-    console.log(users.users)
+    // console.log(users.users)
     return(
         <div>
-            {/* {props.props.map(follower => <FollowersCard key={follower.id}>{follower.login}</FollowersCard>)} */}
+            {users.users.map(user => <User key={user.id} user={user}/>)}
         </div>
     )   
 };
